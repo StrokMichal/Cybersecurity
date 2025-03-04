@@ -1,0 +1,42 @@
+﻿<div class="col-md-6">
+    <div class="login-box">
+        <h4>Login</h4>
+
+        <form id="LoginForm">
+            <div>
+                <label>Login</label>
+                <input id="Login" />
+            </div>
+            <div>
+                <label>Password</label>
+                <input id="Password" />
+            </div>
+        </form>
+            <button id="SubmitButton" class="btn btn-primary">Login</button>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#SubmitButton").on("click", function(event) {
+            console.log("click");
+                var username = $('#Login').val();
+      var password = $('#Password').val();
+    if (username && password) {
+      var data = {
+          username: username,
+          password: password
+        };
+            console.log(data);
+                $.ajax({
+                        url: '@Url.Action("LogMeIn","Account")',
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data:JSON.stringify(data),
+                        success: function (response) 
+                        {console.log(response)}       
+            });
+        }
+    });
+});
+</script>
